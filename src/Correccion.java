@@ -24,13 +24,11 @@ public class Correccion extends JFrame {
                 String contrasenia = new String(passwordField.getPassword()).trim();
                 String rol = (String) comboBoxRoles.getSelectedItem();
 
-                // Verificación de campos vacíos
                 if (usuario.isEmpty() || contrasenia.isEmpty() || rol == null || rol.isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios.");
                     return;
                 }
 
-                // Validación de credenciales
                 if (usuario.equals("cajero") && contrasenia.equals("24") && rol.equals("Cajero")) {
                     CajeroForm cajeroForm = new CajeroForm();
                     cajeroForm.setVisible(true);
