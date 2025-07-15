@@ -21,20 +21,25 @@ public class CajeroForm extends JFrame {
         registrarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String nombres = textFieldNombres.getText();
-                String apellidos = textFieldApellidos.getText();
-                int edad = Integer.parseInt(textFieldEdad.getText());
-                String productos = textFieldProductos.getText();
+                String nombres = textFieldNombres.getText().trim();
+                String apellidos = textFieldApellidos.getText().trim();
+                String edadTexto = textFieldEdad.getText().trim();
+                String productos = textFieldProductos.getText().trim();
 
-                if(nombres.isEmpty() || apellidos.isEmpty() || productos.isEmpty() || edad == 0){
-                    JOptionPane.showMessageDialog(null,"Los campos estan vacios");
-                }else if (edad < 18){
-                    JOptionPane.showMessageDialog(null,"No es mayor de edad");
-                }else {
-                    JOptionPane.showMessageDialog(null,"Registro exitoso");
+                if (nombres.isEmpty() || apellidos.isEmpty() || edadTexto.isEmpty() || productos.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Todos los campos deben estar completos.");
+                    return;
+                }
+                int edad = Integer.parseInt(edadTexto);
+
+                if (edad < 18) {
+                    JOptionPane.showMessageDialog(null, "Debe ser mayor de edad.");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Registro exitoso.");
                 }
             }
         });
+
         limpiarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
