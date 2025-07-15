@@ -23,9 +23,9 @@ public class AdminForm extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 String codi = textFieldCodigo.getText();
                 String producto = textFieldProduct.getText();
-                Double precio = Double.parseDouble(textFieldPrecio.getText());
-                int stock = Integer.parseInt(textFieldStock.getText());
-                if(codi.isEmpty() || producto.isEmpty() || precio == 0 || stock == 0){
+                String precio = textFieldPrecio.getText();
+                String stock = textFieldStock.getText();
+                if(codi.isEmpty() || producto.isEmpty() || precio.isEmpty() || stock.isEmpty()){
                     JOptionPane.showMessageDialog(null,"Los campos estan vacios");
                 }else{
                     JOptionPane.showMessageDialog(null,"Registro exitoso");
