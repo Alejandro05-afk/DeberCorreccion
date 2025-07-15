@@ -20,22 +20,31 @@ public class Correccion extends JFrame {
         ingresarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String usuario = textFieldUser.getText();
-                String contrasenia = new String(passwordField.getPassword());
+                String usuario = textFieldUser.getText().trim();
+                String contrasenia = new String(passwordField.getPassword()).trim();
                 String rol = (String) comboBoxRoles.getSelectedItem();
-                if (usuario.equals("admin") && contrasenia.equals("123") && rol.equals("Administrador")) {
-                    AdminForm adminForm = new AdminForm();
-                    adminForm.setVisible(true);
-                    dispose();
-                }else if(!usuario.equals("admin") || !contrasenia.equals("123") || !usuario.equals("cajero") || !contrasenia.equals("24")){
-                    JOptionPane.showMessageDialog(null,"Usuario o contraseña incorrectos");
-                } else if (usuario.equals("cajero") && contrasenia.equals("24") && rol.equals("Cajero")) {
+
+                // Verificación de campos vacíos
+                if (usuario.isEmpty() || contrasenia.isEmpty() || rol == null || rol.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios.");
+                    return;
+                }
+
+                // Validación de credenciales
+                if (usuario.equals("cajero") && contrasenia.equals("24") && rol.equals("Cajero")) {
                     CajeroForm cajeroForm = new CajeroForm();
                     cajeroForm.setVisible(true);
                     dispose();
+                } else if (usuario.equals("admin") && contrasenia.equals("123") && rol.equals("Administrador")) {
+                    AdminForm adminForm = new AdminForm();
+                    adminForm.setVisible(true);
+                    dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Usuario, contraseña o rol incorrecto.");
                 }
             }
         });
+
         limpiarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
